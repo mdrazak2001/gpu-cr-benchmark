@@ -1,0 +1,2 @@
+timestamp,method,workload,checkpoint_time_sec,restore_time_sec,checkpoint_size_gb
+2026-03-24T23:26:44.897620,mock,python3 -c 'import time; [print(i) or time.sleep(1) for i in range(100)]',5.2335,2.0003,0.009766

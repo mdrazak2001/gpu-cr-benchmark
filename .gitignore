@@ -1,0 +1,37 @@
+# populate .gitignore with files and directories that should be ignored by Git
+
+
+
+
+# Ignore node_modules directory
+node_modules/
+# Ignore build output directories
+dist/
+build/
+# Ignore log files
+*.log
+# Ignore environment variable files
+.env
+# Ignore IDE specific files
+.vscode/
+.idea/
+# Ignore OS generated files
+.DS_Store
+# Ignore coverage reports
+coverage/
+# Ignore temporary files
+*.tmp
+# Ignore compiled files
+*.class
+# Ignore package-lock.json (if using npm)
+package-lock.json
+# Ignore yarn.lock (if using Yarn)
+yarn.lock
+# Ignore any other files or directories that should not be tracked by Git
+# For example, if you have a directory for secrets, you can ignore it like this:
+secrets/
+# Ignore any other specific files or directories as needed
+# For example, if you have a directory for documentation, you can ignore it like this:
+docs/
+
+*venv*
