@@ -25,7 +25,7 @@ class BenchmarkHarness:
         
         # 1. Start the Workload
         start_time = datetime.now()
-        process = subprocess.Popen(self.workload.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(self.workload.split(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         pid = process.pid
         print(f"Workload started with PID: {pid}")
 
@@ -45,16 +45,21 @@ class BenchmarkHarness:
         
         elif self.method == "criu":
             # Example: criu dump -t PID --images-dir ./checkpoints --cuda-checkpoint-bin ./cuda-checkpoint
+            # Added --tree for multi-threaded processes (like Python/Cuda)
             subprocess.run([
                 "sudo", "criu", "dump", "-t", str(pid), 
                 "--images-dir", str(self.checkpoint_dir),
                 "--cuda-checkpoint-bin", "./cuda-checkpoint",
-                "--shell-job"
+                "--shell-job", "--tree"  # Removed str(pid) here
             ], check=True)
             
+            
+        # Updated Cedana Block
         elif self.method == "cedana":
-            # Example: cedana checkpoint PID
-            subprocess.run(["cedana", "checkpoint", str(pid), "--output", str(self.checkpoint_dir)], check=True)
+            subprocess.run([
+                "cedana", "dump", "process", str(pid), 
+                "--dir", str(self.checkpoint_dir)
+            ], check=True)
 
         cp_end = time.perf_counter()
         checkpoint_duration = cp_end - cp_start
@@ -71,7 +76,7 @@ class BenchmarkHarness:
         elif self.method == "criu":
             subprocess.run(["sudo", "criu", "restore", "--images-dir", str(self.checkpoint_dir), "--shell-job"], check=True)
         elif self.method == "cedana":
-            subprocess.run(["cedana", "restore", str(self.checkpoint_dir)], check=True)
+            subprocess.run(["cedana", "restore", "process", "--path", str(self.checkpoint_dir)])
 
         res_end = time.perf_counter()
         restore_duration = res_end - res_start

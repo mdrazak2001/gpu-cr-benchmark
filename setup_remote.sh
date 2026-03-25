@@ -1,7 +1,6 @@
 #!/bin/bash
 # setup_remote.sh - Prepare a fresh GPU instance for C/R Benchmarking
 
-#!/bin/bash
 set -e
 
 echo "=== Installing dependencies ==="
@@ -11,6 +10,7 @@ sudo apt-get install -y \
     libprotobuf-dev protobuf-compiler \
     libprotobuf-c-dev protobuf-c-compiler \
     libnl-3-dev libcap-dev libaio-dev \
+    libnet1-dev \
     pkg-config libgnutls28-dev
 
 echo "=== Cloning CRIU ==="
