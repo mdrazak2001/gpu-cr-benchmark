@@ -35,4 +35,7 @@ chmod +x cuda-checkpoint
 echo "=== Verifying cuda-checkpoint ==="
 ./cuda-checkpoint --help || true
 
+echo "=== Installing Python packages ==="
+pip install torch transformers
+
 echo "=== Setup complete ==="

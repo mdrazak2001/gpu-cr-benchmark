@@ -25,7 +25,7 @@ class BenchmarkHarness:
         
         # 1. Start the Workload
         start_time = datetime.now()
-        process = subprocess.Popen(self.workload.split(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(self.workload, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         pid = process.pid
         print(f"Workload started with PID: {pid}")
 
@@ -50,7 +50,7 @@ class BenchmarkHarness:
                 "sudo", "criu", "dump", "-t", str(pid), 
                 "--images-dir", str(self.checkpoint_dir),
                 "--cuda-checkpoint-bin", "./cuda-checkpoint",
-                "--shell-job", "--tree"  # Removed str(pid) here
+                "--shell-job"
             ], check=True)
             
             
