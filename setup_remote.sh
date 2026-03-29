@@ -9,9 +9,10 @@ sudo apt-get install -y \
     build-essential git wget \
     libprotobuf-dev protobuf-compiler \
     libprotobuf-c-dev protobuf-c-compiler \
-    libnl-3-dev libcap-dev libaio-dev \
+    python3-protobuf libnl-3-dev libcap-dev \
+    uuid-dev libaio-dev libbsd-dev \
     libnet1-dev \
-    pkg-config libgnutls28-dev
+    pkg-config libgnutls28-dev python3-yaml
 
 echo "=== Cloning CRIU ==="
 git clone https://github.com/checkpoint-restore/criu.git
