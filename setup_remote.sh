@@ -3,6 +3,12 @@
 
 set -e
 
+echo "=== Waiting for apt lock to clear ==="
+# Kill unattended upgrades that block apt on fresh instances
+sudo systemctl stop unattended-upgrades || true
+sudo killall unattended-upgr 2>/dev/null || true
+sleep 3
+
 echo "=== Installing dependencies ==="
 sudo apt-get update
 sudo apt-get install -y \
@@ -11,8 +17,19 @@ sudo apt-get install -y \
     libprotobuf-c-dev protobuf-c-compiler \
     python3-protobuf libnl-3-dev libcap-dev \
     uuid-dev libaio-dev libbsd-dev \
-    libnet1-dev \
+    libnet1-dev netcat-openbsd \
     pkg-config libgnutls28-dev python3-yaml
+
+echo "=== Adding CUDA toolkit to PATH ==="
+export PATH=/usr/local/cuda-12.8/bin:$PATH
+echo 'export PATH=/usr/local/cuda-12.8/bin:$PATH' >> ~/.bashrc
+
+echo "=== Installing CUDA toolkit ==="
+# Only install if nvcc not already present
+if ! command -v nvcc &> /dev/null; then
+    sudo apt-get install -y cuda-toolkit-12-8
+fi
+nvcc --version
 
 echo "=== Cloning CRIU ==="
 git clone https://github.com/checkpoint-restore/criu.git
@@ -23,20 +40,20 @@ make -j$(nproc)
 
 echo "=== Installing CRIU ==="
 sudo make install-criu
-
-echo "=== CRIU version ==="
 criu --version
-
 cd ..
 
 echo "=== Downloading CUDA checkpoint tool ==="
-wget https://github.com/NVIDIA/cuda-checkpoint/raw/main/bin/cuda-checkpoint
-chmod +x cuda-checkpoint
+git clone https://github.com/NVIDIA/cuda-checkpoint.git
+cp cuda-checkpoint/bin/x86_64_Linux/cuda-checkpoint ./cuda-checkpoint-bin
+chmod +x ./cuda-checkpoint-bin
 
 echo "=== Verifying cuda-checkpoint ==="
-./cuda-checkpoint --help || true
+./cuda-checkpoint-bin --help
 
 echo "=== Installing Python packages ==="
-pip install torch transformers
+pip install torch transformers huggingface_hub --quiet
 
 echo "=== Setup complete ==="
+echo "Next: reboot if nvidia-smi shows version mismatch"
+nvidia-smi | head -3
