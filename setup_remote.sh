@@ -22,7 +22,7 @@ echo "=== Building CRIU ==="
 make -j$(nproc)
 
 echo "=== Installing CRIU ==="
-sudo make install
+sudo make install-criu
 
 echo "=== CRIU version ==="
 criu --version
