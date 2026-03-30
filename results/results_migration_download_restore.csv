@@ -1,0 +1,4 @@
+timestamp,gpu,driver,method,workload,download_ms,restore_ms,stamp
+2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,40374,1811,1774900508
+2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,39575,1784,1774901359
+2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,42443,1801,1774901554
