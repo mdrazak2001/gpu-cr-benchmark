@@ -2,12 +2,6 @@ timestamp,gpu,driver,method,workload,checkpoint_ms,restore_ms,checkpoint_size_mb
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,counter,563,1334,543,true
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,counter,528,1328,543,true
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,counter,525,1312,543,true
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1245,3328,2300,partial
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1252,3289,2300,partial
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1253,3287,2300,partial
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1235,3744,2300,true
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1236,3736,2300,true
-2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1251,3790,2300,true
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1255,3726,2336,true
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1233,3734,2336,true
 2026-03-29,RTX5090,580.126,criu+cuda-checkpoint,gpt2-124M,1207,3756,2336,true
