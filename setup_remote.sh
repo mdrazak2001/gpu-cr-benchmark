@@ -18,7 +18,8 @@ sudo apt-get install -y \
     python3-protobuf libnl-3-dev libcap-dev \
     uuid-dev libaio-dev libbsd-dev \
     libnet1-dev netcat-openbsd \
-    pkg-config libgnutls28-dev python3-yaml
+    pkg-config libgnutls28-dev python3-yaml \
+    awscli
 
 echo "=== Adding CUDA toolkit to PATH ==="
 export PATH=/usr/local/cuda-12.8/bin:$PATH
