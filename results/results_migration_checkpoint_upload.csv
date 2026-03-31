@@ -1,7 +1,4 @@
 timestamp,gpu,driver,method,workload,checkpoint_ms,upload_ms,checkpoint_size_mb,stamp
-2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,3208,92301,2337,1774899674
-2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,39554,2158,0,1774899674
 2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,3207,92189,2337,1774900508
-2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,3126,75513,2337,1774900661
 2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,2972,95409,2337,1774901359
 2026-03-30,RTX5090,580.126,criu+cuda-checkpoint+r2,gpt2-124M,2972,95808,2337,1774901554

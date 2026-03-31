@@ -56,6 +56,7 @@ chmod +x ~/checkpoint_and_upload.sh ~/download_and_restore.sh ~/run_benchmarks.s
 
 echo "=== Installing Python packages ==="
 pip install torch transformers huggingface_hub
+pip install --upgrade Pillow
 
 echo "=== Configuring AWS for R2 ==="
 echo "Run: aws configure"

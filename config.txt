@@ -1,0 +1,31 @@
+=== System Configuration for GPU Checkpoint Benchmark ===
+Date: Tue Mar 31 18:41:56 UTC 2026
+
+--- CUDA & GPU Driver ---
+Driver version: 580.95.05
+CUDA Version:
+
+--- cuda-checkpoint ---
+Path: /root/cuda-checkpoint-bin
+CUDA checkpoint and restore utility.
+
+--- CRIU ---
+Version: 4.2
+GitID: v4.2-137-g22c3ab6b8
+
+--- GPU Hardware ---
+NVIDIA GeForce RTX 5090, 32607 MiB, 12.0
+
+--- System ---
+Kernel: 6.8.0-59-generic
+OS: Ubuntu 22.04.5 LTS
+CPU: AMD EPYC 7J13 64-Core Processor
+CPU cores: 61
+RAM: 198Gi
+
+--- RAM Disk (if mounted) ---
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           6.0G  2.3G  3.8G  39% /mnt/ramdisk
+
+--- Environment ---
+PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
