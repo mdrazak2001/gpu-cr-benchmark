@@ -58,9 +58,9 @@ interruptions will be 2-5x faster.
 
 | Metric | CRIU CUDA (A100) | Cedana GPU Runtime (A100) | This Repo (RTX 5090) |
 |--------|-----------------|--------------------------|---------------------|
-| Warm Checkpoint | 7.01s | 1.86s | **3.05s** |
-| Cold Start (restore) | 6.22s | 2.65s | **1.80s** |
-| Checkpoint Size | ~2.2GB | ~2.2GB | **2.34GB** |
+| Warm Checkpoint | 7.01s | 1.86s* | 2.9s |
+| Cold Start (restore) | 6.22s | 2.65s | 1.80s* |
+| Checkpoint Size | ~2.2GB | ~2.2GB | 2.34GB |
 | Method | CRIU + cuda-checkpoint | Proprietary GPU interception | CRIU + cuda-checkpoint |
 | Hardware | A100 40GB HBM2e PCIe 4.0 | A100 40GB HBM2e PCIe 4.0 | RTX 5090 32GB GDDR7 PCIe 5.0 |
 
