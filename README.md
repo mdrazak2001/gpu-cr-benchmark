@@ -54,19 +54,23 @@ First checkpoint after model load is significantly slower than subsequent ones:
 checkpoint early in the job. Subsequent checkpoints triggered by actual
 interruptions will be 2-5x faster.
 
-### Comparison with Cedana Published Benchmarks (GPT-2, A100 40GB)
+## Comparison with Cedana Published Benchmarks (GPT-2, ~2.2GiB)
 
-| Metric | Cedana (A100) | This Repo (RTX 5090) | Notes |
-|--------|--------------|---------------------|-------|
-| Checkpoint | 7.01s | 1.24s | Different method — Cedana uses CRIU CUDA plugin |
-| Restore (cold start) | 6.22s | 3.76s | |
-| Hardware | A100 40GB HBM2e | RTX 5090 32GB GDDR7 | 5090 has PCIe 5.0 vs PCIe 4.0 |
-| Software | Cedana proprietary GPU plugin | Standard CRIU + cuda-checkpoint | |
+| Metric | CRIU CUDA (A100) | Cedana GPU Runtime (A100) | This Repo (RTX 5090) |
+|--------|-----------------|--------------------------|---------------------|
+| Warm Checkpoint | 7.01s | 1.86s | **3.05s** |
+| Cold Start (restore) | 6.22s | 2.65s | **1.80s** |
+| Checkpoint Size | ~2.2GB | ~2.2GB | **2.34GB** |
+| Method | CRIU + cuda-checkpoint | Proprietary GPU interception | CRIU + cuda-checkpoint |
+| Hardware | A100 40GB HBM2e PCIe 4.0 | A100 40GB HBM2e PCIe 4.0 | RTX 5090 32GB GDDR7 PCIe 5.0 |
 
-Direct comparison is imperfect — Cedana uses their proprietary GPU
-interception layer which has different tradeoffs vs NVIDIA's native
-cuda-checkpoint. These numbers reflect what's achievable with
-standard open-source tooling on RTX 5090.
+**Notes:**
+- Cedana "GPU Runtime" uses proprietary GPU interception (not CRIU CUDA plugin)
+- CRIU CUDA plugin = standard CRIU + NVIDIA cuda-checkpoint (same as this repo)
+- This repo matches CRIU CUDA method on newer hardware
+- Cedana GPU Runtime is faster on checkpoint due to incremental/JIT optimizations
+- This repo is faster on restore (1.80s vs 2.65s) — likely due to RTX 5090 PCIe 5.0 bandwidth
+- Direct comparison imperfect: different hardware generations, different software stacks
 
 ---
 
